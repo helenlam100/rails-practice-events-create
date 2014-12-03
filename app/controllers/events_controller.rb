@@ -1,4 +1,4 @@
-class EventsController < ActionController::Base
+class EventsController < ApplicationController
 
   def index
     @events = Event.all
@@ -7,6 +7,8 @@ class EventsController < ActionController::Base
   def edit
     @event = Event.find(params[:id])
   end
+
+
 
   def update
     @event = Event.find(params[:id])
@@ -28,6 +30,12 @@ class EventsController < ActionController::Base
     else
       render :new
     end
+  end
+
+  def destroy
+    @event = Event.find(params[:id])
+    @event.destroy
+    redirect_to events_path
   end
 
   private
